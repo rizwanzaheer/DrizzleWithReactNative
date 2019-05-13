@@ -1,3 +1,4 @@
+pragma solidity >=0.4.21 <0.6.0;
 // mapping(address => uint256) public linkIds;
 
 
@@ -92,47 +93,47 @@
 
 // ==================
 // Solidity example from AccountRegistryLogic -> linkAddresses
-bytes32 _signatureDigest = generateAddAddressSchemaHash(_addressToAdd, _nonce);
-require(_currentAddress == recoverSigner(_signatureDigest, _linkSignature));
+// bytes32 _signatureDigest = generateAddAddressSchemaHash(_addressToAdd, _nonce);
+// require(_currentAddress == recoverSigner(_signatureDigest, _linkSignature));
 
-// Web3
-export const getFormattedTypedDataAddAddress = (
-  contractAddress: string,
-  chainId: number,
-  addressToAdd: string,
-  nonce: string,
-): IFormattedTypedData => {
-  return {
-    types: {
-      EIP712Domain: [
-          { name: 'name', type: 'string' },
-          { name: 'version', type: 'string' },
-          { name: 'chainId', type: 'uint256' },
-          { name: 'verifyingContract', type: 'address' },
-      ],
-      AddAddress: [
-        { name: 'addressToAdd', type: 'address'},
-        { name: 'nonce', type: 'bytes32'},
-      ]
-    },
-    primaryType: 'AddAddress',
-    domain: {
-      name: 'Bloom Account Registry',
-      version: '2',
-      chainId: chainId,
-      verifyingContract: contractAddress,
-    },
-    message: {
-      addressToAdd: addressToAdd,
-      nonce: nonce
-    }
-  }
-}
+// // Web3
+// export const getFormattedTypedDataAddAddress = (
+//   contractAddress: string,
+//   chainId: number,
+//   addressToAdd: string,
+//   nonce: string,
+// ): IFormattedTypedData => {
+//   return {
+//     types: {
+//       EIP712Domain: [
+//           { name: 'name', type: 'string' },
+//           { name: 'version', type: 'string' },
+//           { name: 'chainId', type: 'uint256' },
+//           { name: 'verifyingContract', type: 'address' },
+//       ],
+//       AddAddress: [
+//         { name: 'addressToAdd', type: 'address'},
+//         { name: 'nonce', type: 'bytes32'},
+//       ]
+//     },
+//     primaryType: 'AddAddress',
+//     domain: {
+//       name: 'Bloom Account Registry',
+//       version: '2',
+//       chainId: chainId,
+//       verifyingContract: contractAddress,
+//     },
+//     message: {
+//       addressToAdd: addressToAdd,
+//       nonce: nonce
+//     }
+//   }
+// }
 
-newAddressLinkSig = ethSigUtil.signTypedData(unclaimedPrivkey, {
-  data: getFormattedTypedDataAddAddress(registryLogicAddress, 1, alice, nonce)
-})
+// newAddressLinkSig = ethSigUtil.signTypedData(unclaimedPrivkey, {
+//   data: getFormattedTypedDataAddAddress(registryLogicAddress, 1, alice, nonce)
+// })
 
-currentAddressLinkSig = ethSigUtil.signTypedData(alicePrivkey, {
-  data: getFormattedTypedDataAddAddress(registryLogicAddress, 1, unclaimed, nonce)
-})
+// currentAddressLinkSig = ethSigUtil.signTypedData(alicePrivkey, {
+//   data: getFormattedTypedDataAddAddress(registryLogicAddress, 1, unclaimed, nonce)
+// })
